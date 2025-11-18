@@ -8,9 +8,11 @@ def main():
     with open('Category:Prints.html', 'r', encoding='utf-8', errors='ignore') as f:
         content = f.read()
 
+    # Remove HTML comments before extracting links
+    content_without_comments = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)
+
     # Extract all href links that point to local HTML files
-    # Pattern: href="./filename.html"
-    links = re.findall(r'href="\./(.*?\.html)"', content)
+    links = re.findall(r'href="\./(.*?\.html)"', content_without_comments)
 
     # Get all actual HTML files in the directory
     actual_files = {f.name for f in Path('.').glob('*.html')}
@@ -31,9 +33,10 @@ def main():
 
     if broken_links:
         print("\n=== BROKEN LINKS ===")
-        # Group by reason
         for link in sorted(set(broken_links)):
             print(f"  {link}")
+    else:
+        print("\n✓ All links working!")
 
 if __name__ == '__main__':
     main()
