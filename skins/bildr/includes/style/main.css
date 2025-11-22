@@ -2739,7 +2739,7 @@ ins.diffchange-inline{
 #headerWrapper{
 	min-width: 960px;
 	min-heightheight: 160px;
-	background: url('../../../../images/theGianrHeaderPattern.png') center 30px  repeat;	
+	background: url('../../../../images/theGianrHeaderPattern.png') 30px  repeat;	
 }
 
 #globalNavigationWrapper{
